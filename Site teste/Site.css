@@ -1,0 +1,13 @@
+body{
+    background-image: url(g1Ig.gif);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    color: white;
+    background-color: black; /* (opcional) pra destacar o branco */
+}
+
+ #xxx{
+    color: white;
+   
+ }
