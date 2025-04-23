@@ -1,13 +1,83 @@
-body{
-    background-image: url(g1Ig.gif);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    color: white;
-    background-color: black; /* (opcional) pra destacar o branco */
+/* Define o fundo e o texto padrão da página */
+body {
+    background-color: #000000;
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    color: #333;
 }
 
- #xxx{
-    color: white;
-   
- }
+/* Centraliza e estiliza o título */
+h1 {
+    color: #000000;
+    font-size: 32px;
+}
+
+/* Aplica margem e cor nos títulos secundários */
+h2 {
+    color: #000000;
+    margin-top: 30px;
+}
+
+/* Estiliza os parágrafos */
+p {
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 600px;
+}
+
+/* Estiliza a lista de hobbies */
+ol {
+    text-align: left;
+    display: inline-block;
+    padding-left: 20px;
+    font-size: 16px;
+}
+
+/* Estiliza a imagem */
+img {
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+/* Estiliza o link do GitHub */
+a#xxx {
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #000000;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+a#xxx:hover {
+    background-color: #ffffff;
+}
+
+/* Estilo para todos os botões */
+button {
+    background-color: #3498db;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+body {
+    background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    color: rgb(0, 0, 0);
+}
+
