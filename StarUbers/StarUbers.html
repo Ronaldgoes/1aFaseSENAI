@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>STAR Ubers</title>
+  <link rel="stylesheet" href="StarUbers.css">
+</head>
+<body>
+  <div class="container">
+    <h1>STAR Ubers</h1>
+    <button onclick="calcularTempo()">Calcular Tempo da Corrida</button>
+  </div>
+
+  <script>
+    function calcularTempo() {
+      distancia = prompt("Digite a distância da corrida em km:");
+      velocidade = 60;
+      tempo_horas = distancia / velocidade;
+      tempo_segundos = tempo_horas * 3600;
+
+      let mensagem = "Tempo estimado:\n";
+      mensagem += tempo_segundos + " segundos\n";
+      mensagem += (tempo_segundos / 60) + " minutos\n";
+      mensagem += (tempo_segundos / 3600) + " horas\n";
+      mensagem += (tempo_segundos / 86400) + " dias\n";
+      mensagem += (tempo_segundos / 2592000) + " meses\n";
+      mensagem += (tempo_segundos / 31104000) + " anos";
+
+      alert(mensagem);
+    }
+  </script>
+</body>
+</html>
