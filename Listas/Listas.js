@@ -364,6 +364,35 @@ function rafaelexercicio4() {
     }
 }
 
+{
+    function while1(){
+        let contador = 1
+        
+        while (contador <= 20){
+            if( contador % 2 == 0){
+                alert("Este número e par: " + contador)
+            } else {
+                alert("Este número e impar: " + contador)
+            }
+            contador = contador +1
+        }
+    }
+}
+
+
+{
+    function While3(){
+        let vezes = 0
+        while(vezes <= 6){
+        alert("Olá, mundo!")
+        vezes = vezes + 1
+        vezes++
+    }
+    alert("Acabou a Impressão")
+  }
+
+}
+
 
 
 

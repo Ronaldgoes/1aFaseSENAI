@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameSphere - Notícias Globais de Jogos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0f172a;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .platform-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .platform-icon:hover {
+            transform: scale(1.1);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #3b82f6, #ec4899);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        #news-ticker {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        
+        #news-ticker p {
+            display: inline-block;
+            padding-left: 100%;
+            animation: ticker 30s linear infinite;
+        }
+        
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+    </style>
+</head>
+<body class="text-gray-200">
+    <!-- Header -->
+    <header class="bg-gray-900 border-b border-gray-800 sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-gamepad text-3xl text-indigo-500"></i>
+                <h1 class="text-2xl font-bold gradient-text">GameSphere</h1>
+            </div>
+            
+            <nav class="hidden md:flex space-x-6">
+                <a href="#" class="hover:text-indigo-400 transition">Início</a>
+                <a href="#" class="hover:text-indigo-400 transition">Notícias</a>
+                <a href="#" class="hover:text-indigo-400 transition">Jogos</a>
+                <a href="#" class="hover:text-indigo-400 transition">Plataformas</a>
+                <a href="#" class="hover:text-indigo-400 transition">Lançamentos</a>
+            </nav>
+            
+            <div class="flex items-center space-x-4">
+                <button class="bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-md transition">
+                    <i class="fas fa-user mr-2"></i>Login
+                </button>
+                <button class="md:hidden text-xl" id="mobile-menu-button">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-gray-800" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#" class="block px-3 py-2 hover:bg-gray-700 rounded-md">Início</a>
+                <a href="#" class="block px-3 py-2 hover:bg-gray-700 rounded-md">Notícias</a>
+                <a href="#" class="block px-3 py-2 hover:bg-gray-700 rounded-md">Jogos</a>
+                <a href="#" class="block px-3 py-2 hover:bg-gray-700 rounded-md">Plataformas</a>
+                <a href="#" class="block px-3 py-2 hover:bg-gray-700 rounded-md">Lançamentos</a>
+            </div>
+        </div>
+        
+        <!-- News Ticker -->
+        <div class="bg-gray-800 py-2 px-4">
+            <div class="container mx-auto flex items-center">
+                <span class="bg-red-600 px-2 py-1 rounded text-xs font-bold mr-3">AO VIVO</span>
+                <div id="news-ticker" class="w-full">
+                    <p>
+                        <span class="font-bold">Últimas: </span>
+                        GTA VI anunciado para Q1 2025 • PlayStation 6 com lançamento previsto para final de 2025 • Xbox anuncia novo exclusivo • Fortnite: Capítulo 5 com recorde de jogadores • Nintendo anuncia novo console
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-b from-gray-900 to-gray-800 py-16">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4">As últimas notícias do <span class="gradient-text">mundo dos games</span></h2>
+                    <p class="text-lg text-gray-400 mb-6">Tudo sobre os jogos mais populares, lançamentos, atualizações e eventos do cenário gamer mundial. Atualizado em tempo real com dados das principais fontes.</p>
+                    <div class="flex space-x-4">
+                        <button class="bg-indigo-600 hover:bg-indigo-700 px-6 py-3 rounded-md font-medium transition">
+                            <i class="fas fa-newspaper mr-2"></i>Ver Notícias
+                        </button>
+                        <button class="bg-gray-700 hover:bg-gray-600 px-6 py-3 rounded-md font-medium transition">
+                            <i class="fas fa-trophy mr-2"></i>Esports
+                        </button>
+                    </div>
+                </div>
+                <div class="md:w-1/2 relative">
+                    <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Gaming Setup" 
+                         class="rounded-lg shadow-xl w-full h-auto">
+                    <div class="absolute -bottom-4 -right-4 bg-indigo-600 px-4 py-2 rounded-lg shadow-lg">
+                        <p class="font-bold">PRÓXIMO LANÇAMENTO</p>
+                        <p class="text-sm">GTA VI - 2025</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trending Games -->
+    <section class="py-12 bg-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold"><i class="fas fa-fire text-orange-500 mr-3"></i>Jogos em Alta</h2>
+                <a href="#" class="text-indigo-400 hover:text-indigo-300 transition">Ver todos <i class="fas fa-arrow-right ml-1"></i></a>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="trending-games">
+                <!-- Games will be loaded here by JavaScript -->
+                <div class="p-4 bg-gray-700 rounded-lg pulse h-64"></div>
+                <div class="p-4 bg-gray-700 rounded-lg pulse h-64"></div>
+                <div class="p-4 bg-gray-700 rounded-lg pulse h-64"></div>
+                <div class="p-4 bg-gray-700 rounded-lg pulse h-64"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="py-12 bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold"><i class="fas fa-newspaper text-blue-500 mr-3"></i>Últimas Notícias</h2>
+                <div class="flex space-x-2">
+                    <button class="px-3 py-1 bg-gray-700 rounded-md hover:bg-gray-600 transition" onclick="filterNews('all')">Todas</button>
+                    <button class="px-3 py-1 bg-gray-700 rounded-md hover:bg-gray-600 transition" onclick="filterNews('pc')">PC</button>
+                    <button class="px-3 py-1 bg-gray-700 rounded-md hover:bg-gray-600 transition" onclick="filterNews('console')">Console</button>
+                    <button class="px-3 py-1 bg-gray-700 rounded-md hover:bg-gray-600 transition" onclick="filterNews('mobile')">Mobile</button>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8" id="news-container">
+                <!-- News will be loaded here by JavaScript -->
+                <div class="p-4 bg-gray-800 rounded-lg pulse h-96"></div>
+                <div class="p-4 bg-gray-800 rounded-lg pulse h-96"></div>
+                <div class="p-4 bg-gray-800 rounded-lg pulse h-96"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platforms Section -->
+    <section class="py-12 bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-8 text-center"><i class="fas fa-tv text-purple-500 mr-3"></i>Plataformas Populares</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="platform-icon bg-gray-700 p-6 rounded-lg hover:bg-gray-600 cursor-pointer transition">
+                    <i class="fab fa-steam text-5xl text-blue-400 mb-3"></i>
+                    <h3 class="font-bold">Steam</h3>
+                    <p class="text-sm text-gray-400">PC Gaming</p>
+                </div>
+                <div class="platform-icon bg-gray-700 p-6 rounded-lg hover:bg-gray-600 cursor-pointer transition">
+                    <i class="fab fa-playstation text-5xl text-blue-500 mb-3"></i>
+                    <h3 class="font-bold">PlayStation</h3>
+                    <p class="text-sm text-gray-400">PS5 | PS6</p>
+                </div>
+                <div class="platform-icon bg-gray-700 p-6 rounded-lg hover:bg-gray-600 cursor-pointer transition">
+                    <i class="fab fa-xbox text-5xl text-green-500 mb-3"></i>
+                    <h3 class="font-bold">Xbox</h3>
+                    <p class="text-sm text-gray-400">Series X|S</p>
+                </div>
+                <div class="platform-icon bg-gray-700 p-6 rounded-lg hover:bg-gray-600 cursor-pointer transition">
+                    <i class="fas fa-mobile-alt text-5xl text-indigo-400 mb-3"></i>
+                    <h3 class="font-bold">Mobile</h3>
+                    <p class="text-sm text-gray-400">iOS & Android</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Releases -->
+    <section class="py-12 bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold"><i class="fas fa-calendar-alt text-yellow-500 mr-3"></i>Próximos Lançamentos</h2>
+                <a href="#" class="text-indigo-400 hover:text-indigo-300 transition">Ver calendário <i class="fas fa-arrow-right ml-1"></i></a>
+            </div>
+            
+            <div class="overflow-x-auto">
+                <table class="w-full bg-gray-800 rounded-lg overflow-hidden">
+                    <thead class="bg-gray-700">
+                        <tr>
+                            <th class="px-6 py-3 text-left">Jogo</th>
+                            <th class="px-6 py-3 text-left">Data</th>
+                            <th class="px-6 py-3 text-left">Plataformas</th>
+                            <th class="px-6 py-3 text-left">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="releases-table">
+                        <!-- Releases will be loaded here by JavaScript -->
+                        <tr>
+                            <td class="px-6 py-4 pulse bg-gray-700 rounded"></td>
+                            <td class="px-6 py-4 pulse bg-gray-700 rounded"></td>
+                            <td class="px-6 py-4 pulse bg-gray-700 rounded"></td>
+                            <td class="px-6 py-4 pulse bg-gray-700 rounded"></td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 pulse bg-gray-700 rounded"></td>
+                            <td class="px-6 py-4 pulse bg-gray-700 rounded"></td>
+                            <td class="px-6 py-4 pulse bg-gray-700 rounded"></td>
+                            <td class="px-6 py-4 pulse bg-gray-700 rounded"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-12 bg-indigo-900 bg-opacity-50">
+        <div class="container mx-auto px-4 text-center">
+            <div class="max-w-2xl mx-auto">
+                <i class="fas fa-envelope text-5xl text-indigo-400 mb-6"></i>
+                <h2 class="text-3xl font-bold mb-4">Receba as últimas notícias</h2>
+                <p class="text-gray-300 mb-6">Inscreva-se em nossa newsletter e receba atualizações semanais sobre os jogos mais populares, lançamentos e eventos diretamente no seu e-mail.</p>
+                
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <input type="email" id="newsletter-email" placeholder="Seu melhor e-mail" class="flex-grow px-4 py-3 rounded-md bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <button id="newsletter-submit" class="bg-indigo-600 hover:bg-indigo-700 px-6 py-3 rounded-md font-medium transition whitespace-nowrap">
+                        <i class="fas fa-paper-plane mr-2"></i>Assinar
+                    </button>
+                </div>
+                <p id="newsletter-message" class="mt-2 text-sm hidden"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800 py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-gamepad text-2xl text-indigo-500"></i>
+                        <h3 class="text-xl font-bold gradient-text">GameSphere</h3>
+                    </div>
+                    <p class="text-gray-400">O seu portal de notícias sobre o mundo dos games. Atualizações em tempo real, análises e muito mais.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Links Rápidos</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-indigo-400 transition">Início</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-indigo-400 transition">Notícias</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-indigo-400 transition">Jogos</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-indigo-400 transition">Plataformas</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Redes Sociais</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="bg-gray-800 w-10 h-10 rounded-full flex items-center justify-center hover:bg-indigo-600 transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 w-10 h-10 rounded-full flex items-center justify-center hover:bg-indigo-600 transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 w-10 h-10 rounded-full flex items-center justify-center hover:bg-indigo-600 transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 w-10 h-10 rounded-full flex items-center justify-center hover:bg-indigo-600 transition">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Parceiros</h4>
+                    <div class="flex items-center space-x-2">
+                        <img src="https://via.placeholder.com/80x30" alt="IGN" class="h-6 opacity-70 hover:opacity-100 transition">
+                        <img src="https://via.placeholder.com/80x30" alt="GameSpot" class="h-6 opacity-70 hover:opacity-100 transition">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
+                <p>© 2025 GameSphere. Todos os direitos reservados. Dados fornecidos por diversas fontes confiáveis.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dados atualizados para 2025
+        const trendingGames = [
+            {
+                id: 1,
+                name: "GTA VI",
+                image: "https://images.unsplash.com/photo-1617806118233-18e1de247200?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80",
+                players: "2.5M",
+                platform: "PS5, Xbox, PC",
+                trend: "up",
+                rating: 5
+            },
+            {
+                id: 2,
+                name: "The Elder Scrolls VI",
+                image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                players: "1.8M",
+                platform: "Xbox, PC",
+                trend: "up",
+                rating: 4
+            },
+            {
+                id: 3,
+                name: "Starfield: Nova Geração",
+                image: "https://images.unsplash.com/photo-1598550476439-6847785fcea6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                players: "1.2M",
+                platform: "Xbox, PC",
+                trend: "steady",
+                rating: 4
+            },
+            {
+                id: 4,
+                name: "Horizon: Forbidden West 2",
+                image: "https://images.unsplash.com/photo-1630431342004-4ce262423976?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80",
+                players: "950K",
+                platform: "PS5",
+                trend: "up",
+                rating: 5
+            }
+        ];
+
+        const gamingNews = [
+            {
+                id: 1,
+                title: "GTA VI bate recorde de pré-vendas na primeira semana",
+                excerpt: "O aguardado GTA VI já superou todos os recordes de pré-vendas em sua primeira semana disponível, com mais de 10 milhões de unidades reservadas.",
+                image: "https://images.unsplash.com/photo-1617806118233-18e1de247200?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80",
+                date: "15/03/2025",
+                category: "console",
+                source: "IGN"
+            },
+            {
+                id: 2,
+                title: "PlayStation 6 será lançado no final de 2025, confirma Sony",
+                excerpt: "Durante o último State of Play, a Sony confirmou oficialmente o lançamento do PlayStation 6 para o quarto trimestre de 2025, com especificações técnicas impressionantes.",
+                image: "https://images.unsplash.com/photo-1607853202273-797f1c22a38e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1527&q=80",
+                date: "14/03/2025",
+                category: "console",
+                source: "GameSpot"
+            },
+            {
+                id: 3,
+                title: "Nova geração de GPUs da NVIDIA promete revolucionar jogos em 4K",
+                excerpt: "A NVIDIA anunciou sua nova linha de placas de vídeo RTX 6000, prometendo desempenho sem precedentes para jogos em 4K com ray tracing.",
+                image: "https://images.unsplash.com/photo-1631729671010-c0e9a8aed54a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                date: "13/03/2025",
+                category: "pc",
+                source: "TechRadar"
+            },
+            {
+                id: 4,
+                title: "Nintendo anuncia novo console para 2026",
+                excerpt: "A Nintendo revelou planos para um novo console que deve substituir o Switch, com lançamento previsto para o primeiro semestre de 2026.",
+                image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                date: "12/03/2025",
+                category: "console",
+                source: "IGN"
+            },
+            {
+                id: 5,
+                title: "Fortnite: Capítulo 5 atinge 50 milhões de jogadores simultâneos",
+                excerpt: "O novo capítulo do Fortnite bateu recorde de jogadores simultâneos em seu primeiro fim de semana, superando todas as expectativas.",
+                image: "https://images.unsplash.com/photo-1630431342004-4ce262423976?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80",
+                date: "11/03/2025",
+                category: "multi",
+                source: "GameSpot"
+            },
+            {
+                id: 6,
+                title: "Xbox anuncia novo exclusivo em parceria com estúdio japonês",
+                excerpt: "A Microsoft revelou um novo jogo exclusivo desenvolvido em parceria com um renomado estúdio japonês, com lançamento previsto para 2026.",
+                image: "https://images.unsplash.com/photo-1607853202273-797f1c22a38e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1527&q=80",
+                date: "10/03/2025",
+                category: "console",
+                source: "IGN"
+            }
+        ];
+
+        const upcomingReleases = [
+            {
+                game: "GTA VI",
+                date: "10/04/2025",
+                platforms: "PS5, Xbox, PC",
+                status: "Pré-venda"
+            },
+            {
+                game: "The Elder Scrolls VI",
+                date: "15/08/2025",
+                platforms: "Xbox, PC",
+                status: "Aguardando"
+            },
+            {
+                game: "Fable",
+                date: "22/09/2025",
+                platforms: "Xbox, PC",
+                status: "Pré-venda"
+            },
+            {
+                game: "Horizon: Forbidden West 2",
+                date: "30/10/2025",
+                platforms: "PS5",
+                status: "Em breve"
+            },
+            {
+                game: "Starfield: Nova Geração",
+                date: "12/11/2025",
+                platforms: "Xbox, PC",
+                status: "Pré-venda"
+            },
+            {
+                game: "Avowed",
+                date: "05/12/2025",
+                platforms: "Xbox, PC",
+                status: "Aguardando"
+            }
+        ];
+
+        // Função para carregar jogos em alta
+        function loadTrendingGames() {
+            const trendingContainer = document.getElementById('trending-games');
+            trendingContainer.innerHTML = '';
+            
+            trendingGames.forEach(game => {
+                const trendIcon = game.trend === 'up' ? 'fa-arrow-up text-green-500' : 
+                                game.trend === 'down' ? 'fa-arrow-down text-red-500' : 
+                                'fa-equals text-yellow-500';
+                
+                // Criar estrelas de avaliação
+                let stars = '';
+                for (let i = 0; i < 5; i++) {
+                    stars += `<i class="fas fa-star ${i < game.rating ? 'text-yellow-400' : 'text-gray-500'}"></i>`;
+                }
+                
+                trendingContainer.innerHTML += `
+                    <div class="news-card bg-gray-700 rounded-lg overflow-hidden transition duration-300">
+                        <div class="relative h-40 overflow-hidden">
+                            <img src="${game.image}" alt="${game.name}" class="w-full h-full object-cover">
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                                <h3 class="font-bold text-xl">${game.name}</h3>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-gray-400 text-sm"><i class="fas fa-users mr-1"></i> ${game.players} jogadores</span>
+                                <span class="text-sm bg-gray-800 px-2 py-1 rounded"><i class="fas ${trendIcon} mr-1"></i> ${game.platform}</span>
+                            </div>
+                            <div class="flex mb-2 text-sm">
+                                ${stars}
+                            </div>
+                            <button class="w-full bg-indigo-600 hover:bg-indigo-700 py-2 rounded-md text-sm font-medium transition">
+                                <i class="fas fa-info-circle mr-1"></i> Detalhes
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+        
+        // Função para carregar notícias
+        function loadNews(category = 'all') {
+            const newsContainer = document.getElementById('news-container');
+            newsContainer.innerHTML = '';
+            
+            const filteredNews = category === 'all' 
+                ? gamingNews 
+                : gamingNews.filter(news => news.category === category || news.category === 'multi');
+            
+            filteredNews.forEach(news => {
+                newsContainer.innerHTML += `
+                    <div class="news-card bg-gray-800 rounded-lg overflow-hidden transition duration-300">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="${news.image}" alt="${news.title}" class="w-full h-full object-cover">
+                            <div class="absolute top-2 right-2 bg-gray-900 bg-opacity-70 px-2 py-1 rounded text-xs">
+                                ${news.source}
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <span class="text-gray-400 text-sm">${news.date}</span>
+                            <h3 class="font-bold text-xl mb-2">${news.title}</h3>
+                            <p class="text-gray-400 mb-4">${news.excerpt}</p>
+                            <button class="text-indigo-400 hover:text-indigo-300 text-sm font-medium transition">
+                                Ler mais <i class="fas fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+        
+        // Função para filtrar notícias
+        function filterNews(category) {
+            loadNews(category);
+        }
+        
+        // Função para carregar próximos lançamentos
+        function loadUpcomingReleases() {
+            const releasesTable = document.getElementById('releases-table');
+            releasesTable.innerHTML = '';
+            
+            upcomingReleases.forEach(release => {
+                releasesTable.innerHTML += `
+                    <tr class="hover:bg-gray-700 transition">
+                        <td class="px-6 py-4 font-medium">${release.game}</td>
+                        <td class="px-6 py-4">${release.date}</td>
+                        <td class="px-6 py-4">
+                            <div class="flex space-x-2">
+                                ${release.platforms.includes('PC') ? '<i class="fab fa-windows text-blue-400"></i>' : ''}
+                                ${release.platforms.includes('PS5') ? '<i class="fab fa-playstation text-blue-500"></i>' : ''}
+                                ${release.platforms.includes('Xbox') ? '<i class="fab fa-xbox text-green-500"></i>' : ''}
+                                <span>${release.platforms}</span>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <span class="${release.status === 'Pré-venda' ? 'bg-purple-600' : release.status === 'Em breve' ? 'bg-blue-600' : 'bg-yellow-600'} px-2 py-1 rounded text-xs">
+                                ${release.status}
+                            </span>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+        
+        // Função para manipular o menu mobile
+        function setupMobileMenu() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+        
+        // Função para manipular a newsletter
+        function setupNewsletter() {
+            const newsletterSubmit = document.getElementById('newsletter-submit');
+            const newsletterEmail = document.getElementById('newsletter-email');
+            const newsletterMessage = document.getElementById('newsletter-message');
+            
+            newsletterSubmit.addEventListener('click', () => {
+                const email = newsletterEmail.value.trim();
+                
+                if (!email) {
+                    showNewsletterMessage('Por favor, insira um e-mail válido', 'text-red-400');
+                    return;
+                }
+                
+                if (!validateEmail(email)) {
+                    showNewsletterMessage('E-mail inválido', 'text-red-400');
+                    return;
+                }
+                
+                // Simular envio
+                showNewsletterMessage('Obrigado por se inscrever! Você receberá nossas atualizações em breve.', 'text-green-400');
+                newsletterEmail.value = '';
+                
+                // Simular envio para API
+                setTimeout(() => {
+                    console.log(`E-mail ${email} cadastrado na newsletter`);
+                }, 1000);
+            });
+            
+            function showNewsletterMessage(message, colorClass) {
+                newsletterMessage.textContent = message;
+                newsletterMessage.className = `mt-2 text-sm ${colorClass}`;
+                newsletterMessage.classList.remove('hidden');
+                
+                setTimeout(() => {
+                    newsletterMessage.classList.add('hidden');
+                }, 3000);
+            }
+            
+            function validateEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(email);
+            }
+        }
+        
+        // Função para simular atualizações em tempo real
+        function simulateRealTimeUpdates() {
+            setInterval(() => {
+                console.log("Verificando atualizações...");
+                
+                // Em uma implementação real, aqui seria uma chamada à API
+                // fetch('https://api.gamesphere.com/latest')
+                //     .then(response => response.json())
+                //     .then(data => updateContent(data));
+                
+                // Simular atualização ocasional
+                if (Math.random() > 0.7) {
+                    console.log("Novos dados disponíveis!");
+                    // Atualizar algum conteúdo aleatório
+                    const randomIndex = Math.floor(Math.random() * trendingGames.length);
+                    const randomGame = trendingGames[randomIndex];
+                    
+                    const gameCards = document.querySelectorAll('#trending-games .news-card');
+                    if (gameCards[randomIndex]) {
+                        const playerCount = gameCards[randomIndex].querySelector('.fa-users').nextSibling;
+                        playerCount.textContent = ` ${(randomGame.players.replace(/[^\d]/g, '') * (1 + Math.random() * 0.1)).toFixed(1)}K jogadores`;
+                    }
+                }
+            }, 30000);
+        }
+        
+        // Inicialização quando o DOM estiver carregado
+        document.addEventListener('DOMContentLoaded', function() {
+            loadTrendingGames();
+            loadNews();
+            loadUpcomingReleases();
+            setupMobileMenu();
+            setupNewsletter();
+            simulateRealTimeUpdates();
+            
+            // Adicionar evento de clique para os cards de notícias
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.news-card button')) {
+                    const card = e.target.closest('.news-card');
+                    const title = card.querySelector('h3').textContent;
+                    alert(`Você clicou em: ${title}\n\nEm um site real, isso levaria a uma página de detalhes.`);
+                }
+            });
+        });
+    </script> 
+
+<script src="GAME.js"></script>
+
+</body>
+</html>
