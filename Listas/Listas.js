@@ -382,6 +382,7 @@ function rafaelexercicio4() {
 
 {
     function While3(){
+
         let vezes = 0
         while(vezes <= 6){
         alert("Olá, mundo!")
@@ -391,6 +392,32 @@ function rafaelexercicio4() {
     alert("Acabou a Impressão")
   }
 
+}
+
+    function while4(){
+
+    let contador = 0
+        while (contador <= 45) {
+             console.log(contador)
+        contador += 5
+        alert(contador)
+}
+
+}
+
+{
+    function while6(){
+        let soma = 0
+
+        let cont = 1
+        while(cont <= 100 && soma <= 400 ){
+            soma = soma + cont
+            cont++
+            
+        }
+        alert("Soma: " + soma)
+
+    }
 }
 
 
