@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Rafa.css">
+    <title>Telas</title>
+</head>
+<body>
+    <nav>
+
+        <button onclick="mostrarLogin()">login</button>
+        <button onclick="mostrarCadastro()">cadastro</button>
+        <button onclick="mostrarProdutos()">Produtos</button>
+        
+    </nav>
+    <h1>Teste Login/Cadastro</h1>
+
+    <div id="login">
+        <h2>Login</h2>
+        <div class="containerInput"> 
+         <label for="nome">Digite seu nome:</label>
+        <input type="text" id="InpLogNome">
+        </div>
+        <hr>
+        <div class="containerInput">
+         <label for="senha">Digite sua senha:</label>
+        <input type="password" id="InpLogSenha">
+        </div>
+        <hr>
+        <button onclick="Logar()">Logar</button>
+    </div>
+
+    <div id="cadastro">
+        <h2>Cadastro</h2>
+        <div class="containerInput">
+        <label for="nome">Digite seu nome:</label>
+        <input type="text" id="InpCadNome">
+        </div>
+        <hr>
+        <div class="containerInput">
+        <label for="idade">Digite sua idade</label>
+        <input type="number" id="InpCadIdade">
+        </div>
+        <hr>
+        <div class="containerInput">
+        <label for="senha">Digite sua senha</label>
+        <input type="password" id="InpCadSenha">
+        </div>
+        <hr>
+         <button onclick="Cadastrar()">Cadastrar</button>
+         
+    </div>
+
+    <section id="Produtos">
+
+        <h1>Produtos</h1>
+
+
+
+    </section>
+    
+
+
+    <script src="Rafa.js"></script>
+</body>
+</html>

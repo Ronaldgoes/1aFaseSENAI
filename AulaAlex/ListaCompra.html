@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Compras</title>
+    <link rel="stylesheet" href="ListaCompra.css">
+</head>
+<body>
+    <div class="container_principal" id="container_principal"> 
+
+    
+        <div class="titulo">
+            <h1>Lista De Compras</h1>
+            <button class="botao_cadastro" onclick="chamarCadastro()">Cadastrar itens</button>
+    </div>
+    <div class="conteudo_lista">
+
+        <ol id="minhalista">
+            
+        </ol>
+
+    </div>
+</div>
+<div class="container_cadastro" id="container_cadastro"> 
+    <div class="titulo">
+        <h1>Cadastrar item</h1>
+        <button class="botao_voltar" onclick="chamarVoltar()">Voltar</button>
+    </div>
+    <div class="conteudo_cadastro">
+    <label for="nome">Nome do item</label>
+    <input type="text" name="nome" id="nome">
+    <button class="button_cadastrar" onclick="adicionarItem()" >Cadastrar</button>
+    </div>
+
+</div>
+</body>
+<script src="ListaCompra.js"></script>
+</html>
